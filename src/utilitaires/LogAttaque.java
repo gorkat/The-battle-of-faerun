@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utilitaires;
 
 import data.Guerrier;
@@ -60,7 +55,7 @@ public class LogAttaque {
      * @param guerrier
      * @return 
      */
-    public String afficherEtatGuerrier(Guerrier guerrier) {
+    public static String afficherEtatGuerrier(Guerrier guerrier) {
         return guerrier.getClass().getSimpleName()
                 + '_'
                 + guerrier.getFaction()
@@ -69,6 +64,10 @@ public class LogAttaque {
                 + "PV]";
     }
     
+    /**
+     * Return the damages undergo by the victime.
+     * @return damages undergo as a String.
+     */
     public String afficherDegats() {
         return '(' 
                 + "degats donnés "
@@ -78,6 +77,10 @@ public class LogAttaque {
                 + ") ";
     }
     
+    /**
+     * Return who killed who
+     * @return the murder as a String
+     */
     public String afficherMort() {
         Guerrier winner,
                  looser;

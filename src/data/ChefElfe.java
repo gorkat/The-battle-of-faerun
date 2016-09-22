@@ -5,9 +5,6 @@
  */
 package data;
 
-import utilitaires.LogAttaque;
-import utilitaires.PlateauUtilitaire;
-
 /**
  *
  * @author tgork
@@ -15,6 +12,7 @@ import utilitaires.PlateauUtilitaire;
 public class ChefElfe extends Elfe {
     private static final int COEFF_ATTAQUE = 2;
     private final int COUT_DE_BASE         = 4;
+    private final int DEPLACEMENT_BASE     = 2;
     
     public ChefElfe() {
         super();
@@ -28,5 +26,9 @@ public class ChefElfe extends Elfe {
     @Override
     public int getCOUT_DE_BASE() {
        return COUT_DE_BASE;
+    }
+
+    public int getDEPLACEMENT_BASE() {
+        return DEPLACEMENT_BASE;
     }
 }

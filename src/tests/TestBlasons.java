@@ -9,7 +9,7 @@ import data.Blasons;
 
 /**
  *
- * @author tgork
+ * @author tgorka
  */
 public class TestBlasons {
 

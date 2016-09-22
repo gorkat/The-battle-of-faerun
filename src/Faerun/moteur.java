@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tests;
+package Faerun;
 
+import data.Blasons;
 import data.ChefElfe;
 import data.ChefNain;
 import data.Elfe;
 import data.Guerrier;
 import data.Nain;
 import data.Plateau;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import tests.TestPlateau;
 import utilitaires.LogAttaque;
 import utilitaires.LogPlateau;
 
@@ -23,7 +24,7 @@ import utilitaires.LogPlateau;
  *
  * @author tgork
  */
-public class TestPlateau {
+public class moteur {
 
     /**
      * @param args the command line arguments
@@ -32,16 +33,10 @@ public class TestPlateau {
         Scanner scan = new Scanner(System.in);
         
         LinkedList<Guerrier> guerriersRouges = new LinkedList();
-        guerriersRouges.add(new Elfe());
-        guerriersRouges.add(new Elfe());
-        guerriersRouges.add(new Elfe());
         guerriersRouges.add(new ChefElfe());
         
         LinkedList<Guerrier> guerriersBleus = new LinkedList();
-        guerriersBleus.add(new Nain());
-        guerriersBleus.add(new Nain());
-        guerriersBleus.add(new Nain());
-        guerriersBleus.add(new ChefNain());
+        guerriersBleus.add(new ChefElfe());
         
         System.out.println("Création d'un plateau de 5 cases...");
         Plateau p = null;
@@ -61,21 +56,23 @@ public class TestPlateau {
         
         while (!Plateau.chateauBleu.defaite() && !Plateau.chateauRouge.defaite()) {
             System.out.println("\n------- tour " + tours + " -------\n");
+            LinkedList<LogAttaque> combat = p.deplacement();
+
+            combat.stream().forEach((attaque) -> {
+                System.out.println(attaque.afficherCombat());
+            });
             
             Plateau.chateauBleu.entrainer();
             Plateau.chateauRouge.entrainer();
             
             System.out.println(log.afficherPlateau());
             
-            LinkedList<LogAttaque> combat = p.deplacement();
             
-            for (LogAttaque attaque : combat) {
-                System.out.println(attaque.afficherCombat());
-            }
             
             Plateau.chateauBleu.genererRessource();
             Plateau.chateauRouge.genererRessource();
             
+            scan.nextLine();
             tours++;
         }
         
@@ -84,6 +81,5 @@ public class TestPlateau {
         } else {
             System.out.println("Chateau" + Plateau.chateauBleu.getBlason() + " a gagné");
         }
-            
     }
 }

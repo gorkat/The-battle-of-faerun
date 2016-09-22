@@ -6,7 +6,7 @@
 package data;
 
 /**
- *
+ * Classe Blasons permettant d'affecter les Chateaux et leurs guerriers à une équipe.
  * @author tgork
  */
 public enum Blasons {

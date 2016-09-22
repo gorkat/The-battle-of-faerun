@@ -16,19 +16,9 @@ public class Nain extends Guerrier {
     public Nain() {
         super();
     }
-    
-    @Override
-    public int subirDegats(int degats) {
-        int degats_subis = degats / this.COEFF_DEFENSE;
-        int new_HP_state = getPV() - degats_subis;
-        
-        setPV(new_HP_state);
-        
-        return degats_subis;
-    }
-    
+
     @Override
     public int getDefense() {
-        return this.COEFF_DEFENSE;
+        return super.getDefense() * this.COEFF_DEFENSE;
     }
 }

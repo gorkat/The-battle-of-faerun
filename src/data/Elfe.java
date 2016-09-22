@@ -5,9 +5,6 @@
  */
 package data;
 
-import utilitaires.LogAttaque;
-import utilitaires.PlateauUtilitaire;
-
 /**
  *
  * @author tgorka

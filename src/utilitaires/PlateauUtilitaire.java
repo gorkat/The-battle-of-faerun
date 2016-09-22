@@ -20,4 +20,13 @@ public class PlateauUtilitaire {
         
         return somme;
     }
+    
+    /**
+     * Returns a random integer in a given interval.
+     * @param interval
+     * @return a random integer in a given interval.
+     */
+    public static int getRandom(int interval) {
+        return RANDOM.nextInt(interval);
+    }
 }
