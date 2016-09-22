@@ -73,16 +73,11 @@ public class Plateau {
             Carreau cit = (Carreau) it.next();
             Carreau creverse = (Carreau) reverseIt.next();
 
-            if (cit.estZoneDeCombat()) {
+            if (cit.estZoneDeCombat() || creverse.estZoneDeCombat()) {
                 LinkedList<LogAttaque> combat = cit.combat();
                 logs.addAll(combat);
             } else {
                 cit.avancerBleus();
-            }
-            if (creverse.estZoneDeCombat()) {
-                LinkedList<LogAttaque> combat = creverse.combat();
-                logs.addAll(combat);
-            } else {
                 creverse.avancerRouges();
             }
         }
