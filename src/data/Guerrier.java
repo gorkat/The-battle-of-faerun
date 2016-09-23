@@ -22,7 +22,7 @@ public abstract class Guerrier {
     private int points_deplacement;
 
     public Guerrier() {
-        this.points_deplacement = this.DEPLACEMENT;
+        this.points_deplacement = this.getDeplacementBase();
     }
 
     public int getForce() {
@@ -41,7 +41,7 @@ public abstract class Guerrier {
         return COUT_DE_BASE;
     }
     
-    private int getDeplacementBase() {
+    public int getDeplacementBase() {
         return this.DEPLACEMENT;
     }
     

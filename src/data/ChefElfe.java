@@ -28,7 +28,8 @@ public class ChefElfe extends Elfe {
        return COUT_DE_BASE;
     }
 
-    public int getDEPLACEMENT_BASE() {
+    @Override
+    public int getDeplacementBase() {
         return DEPLACEMENT_BASE;
-    }
+    }  
 }
