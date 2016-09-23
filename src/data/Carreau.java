@@ -8,6 +8,8 @@ package data;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utilitaires.LogAttaque;
 import utilitaires.PlateauUtilitaire;
 
@@ -63,25 +65,33 @@ public class Carreau {
             Guerrier guerrier = (Guerrier) it.next();
             LinkedList<Guerrier> ennemis = guerrier.getFaction() == Blasons.ROUGE ? guerriers_bleus : guerriers_rouges;
             
-            // If the warrior is alive and there are still ennemis
-            if (guerrier.isAlive() && ennemis.size() > 0) {
-                // Pick a random ennemi
-                index_ennemi = PlateauUtilitaire.getRandom(ennemis.size());
-                Guerrier victime = ennemis.get(index_ennemi);
-                
-                // Attack him
-                LogAttaque log = guerrier.attaque(victime);
-
-                // If ennemi isn't alive anymore, remove him from the ennemies team
-                if (!victime.isAlive()) {
-                    ennemis.remove(victime);
+            try {
+                // If the warrior is alive and there are still ennemis
+                if (guerrier.isAlive() && ennemis.size() > 0) {
+                    // Pick a random ennemi
+                    index_ennemi = PlateauUtilitaire.getRandom(ennemis.size());
+                    Guerrier victime = ennemis.get(index_ennemi);
+                    
+                    // Attack him
+                    LogAttaque log = guerrier.attaque(victime);
+                    
+                    // If ennemi isn't alive anymore, remove him from the ennemies team
+                    if (!victime.isAlive()) {
+                        ennemis.remove(victime);
+                    }
+                    
+                    // Save combat log in the list
+                    logs.addLast(log);
+                } else {
+                    // the current warrior is dead then we remove it from the list
+                    it.remove();
                 }
-                
-                // Save combat log in the list
-                logs.addLast(log);
-            } else {
-                // the current warrior is dead then we remove it from the list
-                it.remove();
+            } catch (MontureMorteException ex) {
+                // if a warrior has lost his horse, then he is replaced in his team;
+                Guerrier cavalier = ex.getCavalier();
+                LinkedList<Guerrier> equipe_cavalier = guerrier.getFaction() == Blasons.ROUGE ? guerriers_bleus : guerriers_rouges;
+                equipe_cavalier.remove(ex.getMonture());
+                this.addGuerrier(cavalier.getFaction(), cavalier);
             }
         }
     

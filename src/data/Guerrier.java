@@ -119,7 +119,11 @@ public abstract class Guerrier {
     /**
      * @return true if PVs are greater than 0
      */
-    public boolean isAlive() {
+    public boolean isAlive() throws MontureMorteException {
+        return this.getPV() > 0;
+    }
+    
+    public boolean isDead() {
         return this.getPV() > 0;
     }
     
@@ -142,7 +146,7 @@ public abstract class Guerrier {
      * @param ennemi the ennemi to attack
      * @return LogAttaque
      */
-    public LogAttaque attaque(Guerrier ennemi) {
+    public LogAttaque attaque(Guerrier ennemi) throws MontureMorteException {
         int degats,
             degatsSubis;
         
@@ -188,5 +192,9 @@ public abstract class Guerrier {
      */
     public String afficherEtat() {
         return LogAttaque.afficherEtatGuerrier(this);
+    }
+
+    public String getWarriorName() {
+        return this.getClass().getSimpleName();
     }
 }

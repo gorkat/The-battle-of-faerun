@@ -6,6 +6,7 @@
 package tests;
 
 import data.ChefElfe;
+import data.MontureMorteException;
 import data.Nain;
 import utilitaires.LogAttaque;
 
@@ -18,7 +19,7 @@ public class TestCombats {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MontureMorteException {
         Nain n1 = new Nain();
         ChefElfe e1 = new ChefElfe();
         

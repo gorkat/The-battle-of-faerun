@@ -33,15 +33,16 @@ public class LogAttaque {
     public String afficherCombat() {
         String mort;
         
-        if (!getVictime().isAlive()) {
+        if (getVictime().isDead()) {
             // if victime does not survive to the attack
             // then print a message telling the player he's dead.
             mort = "\n" + this.afficherMort();
-        } else if (!getAttaquant().isAlive()) {
+        } else if (getAttaquant().isDead()) {
             return "";
         } else {
             mort = "";
         }
+        
         return "COMBAT : "
                 + this.afficherEtatGuerrier(getAttaquant())
                 + " tape "
@@ -56,7 +57,7 @@ public class LogAttaque {
      * @return 
      */
     public static String afficherEtatGuerrier(Guerrier guerrier) {
-        return guerrier.getClass().getSimpleName()
+        return guerrier.getWarriorName()
                 + '_'
                 + guerrier.getFaction()
                 + '[' 
@@ -83,17 +84,15 @@ public class LogAttaque {
      */
     public String afficherMort() {
         Guerrier winner,
-                 looser;
-        
-        if (!getVictime().isAlive()) {
+                looser;
+        if (getVictime().isDead()) {
             looser = getVictime();
             winner = getAttaquant();
         } else {
             looser = getAttaquant();
             winner = getVictime();
-        }
-        
-        
+        }   
+
         return "MORT   : "
                 + this.afficherEtatGuerrier(winner)
                 + " tue "
